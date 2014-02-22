@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         	point="org.eclipse.ui.menus">
+       <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+         	   label="Code Gen"
+               id="com.stubhub.codegen.menus.Gen"
+               mnemonic="M">
+            <command
+                  commandId="com.stubhub.codegen.commands.genCommand"
+                  icon="icons/sample.gif"
+                  id="com.stubhub.codegen.toolbars.genCommand"
+                  tooltip="Stubhub Code Gen">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="com.stubhub.codegen.commands.category"
+            name="CodeGen">
+      </category>
+      <command
+            categoryId="com.stubhub.codegen.commands.category"
+            id="com.stubhub.codegen.commands.genCommand"
+            name="Generate Code">
+      </command>
+   </extension>
+	<extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="com.stubhub.codegen.handlers.CodeGenHandler"
+            commandId="com.stubhub.codegen.commands.genCommand">
+      </handler>
+   </extension>
+ <extension
+       point="org.eclipse.ui.newWizards">
+       <category
+            name="Stubhub CodeGen"
+            id="com.stubhub.codegen.wizard">
+      </category>
+      <wizard 
+      		id="com.stubhub.codegen.dialog.mainWizard"
+      		category="com.stubhub.newcode"
+      		name="Stubhub"
+      		icon="icons/sample.gif"
+      		class="com.stubhub.codegen.dialog.mainWizard">  		
+      </wizard>
+ </extension>
+ <extension
+       point="org.eclipse.ui.menus">
+       <menuContribution
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+         <menu
+         	   label="Code Gen"
+               id="com.stubhub.codegen.menus.Gen"
+               mnemonic="M">
+         </menu>
+      </menuContribution>
+ </extension>
+
+
+	
+
+</plugin>
