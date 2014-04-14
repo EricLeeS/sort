@@ -107,7 +107,21 @@ public class Tree {
 	 */
 	public void nonPostOrder(BinaryTreeNode cur){
 		Stack<BinaryTreeNode> stack = new Stack<BinaryTreeNode>();
+		BinaryTreeNode pre=null;
 		while(cur!=null||!stack.empty()){
+			while(cur!=null){
+				stack.push(cur);
+				cur=cur.getLlink();
+			}
+			cur = stack.peek();
+			if(cur.getRlink()==null||cur.getRlink()==pre){
+				System.out.println(cur.getInfo());
+				pre = cur;
+				stack.pop();
+				cur=null;
+			}else{
+				cur=cur.getRlink();
+			}
 			
 		}
 	}
