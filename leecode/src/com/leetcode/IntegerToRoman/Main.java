@@ -1,9 +1,8 @@
-package com.leetcode.RomantoInteger;
+package com.leetcode.IntegerToRoman;
 
 public class Main {
 	public static void main(String[] args){
 		Solution so = new Solution();
-		String str = "MDCC";
-		System.out.println(so.romanToInt(str));
+		System.out.println(so.intToRoman(1976));
 	}
 }

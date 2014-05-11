@@ -22,13 +22,20 @@ public class Solution {
         while(!queue.isEmpty()||cur!=null){
         	cur = queue.peek();
         	queue.poll();
-        	tempqueue.offer(cur.left);
-        	tempqueue.offer(cur.right);
+        	if(cur.left!=null)
+        		tempqueue.offer(cur.left);
+        	if(cur.right!=null)
+        		tempqueue.offer(cur.right);
+        	
+
         	if(queue.isEmpty()){
         		cur.next=null;
+        		cur=null;
         		queue=tempqueue;
+        		tempqueue=new LinkedList<TreeLinkNode>();
         	}else{
         		cur.next=queue.peek();
+        		cur=null;
         	}
         }
     }
