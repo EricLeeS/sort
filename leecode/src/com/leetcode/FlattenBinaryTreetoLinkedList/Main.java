@@ -13,7 +13,7 @@ public class Main {
 //		t2.right=t4;
 //		t1.right=t5;
 //		t5.right=t6;
-		Solution so = new Solution();
+		NSolution so = new NSolution();
 		so.flatten(t1);
 	}
 }
