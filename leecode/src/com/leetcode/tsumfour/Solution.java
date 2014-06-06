@@ -1,4 +1,4 @@
-package com.leetcode.FourSum;
+package com.leetcode.tsumfour;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,4 +55,3 @@ public class Solution {
         
     }
 }
-

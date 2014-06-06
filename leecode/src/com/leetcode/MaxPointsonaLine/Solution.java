@@ -7,85 +7,73 @@ import java.util.Set;
 
 public class Solution {
     public int maxPoints(Point[] points) {
-		if(points.length==0){
-			return 0;
-		}else{
-			int max=0;
-			Map<Point,Double> in = new HashMap<Point,Double>(); 
-			Map<Double,Integer> count = new HashMap<Double,Integer>();
-			for(int i=0;i<points.length;i++){
-				double temp =  infinity(points[i]);
-				if(in.isEmpty()){
-					in.put(points[i],temp);
-				}else{
-					if(ContainPoint(in,points[i])){
-						int value = count.get(temp)+1;
-						if(value>max){
-							max = value;
-						}
-						count.put(temp,value);
-						continue;
-					}else{
-						in.put(points[i],temp);
-					}
-				}
-				
-				
-				if(count.isEmpty()){
-					count.put(temp, 1);
-					max=1;
-				}else{
-					if(Contain(count,temp)){
-						int value = count.get(temp)+1;
-						if(value>max){
-							max = value;
-						}
-						count.put(temp,value);
-					}else{
-						count.put(temp, 1);
-					}
-				}
-			}
-			return max;
-		}
+    	if(points==null||points.length==0)
+    		return 0;
+    	Map<Double,Integer> map = new HashMap<Double,Integer>();
+    	int max = 0;
+    	for(int i=0;i<points.length;i++){
+    		map = new HashMap<Double,Integer>();
+    		Point tp = points[i];
+    		int tmax=0;
+    		int count=0;
+    		for(int j=0;j<points.length;j++){
+    			Point tt = points[j];
+    			
+    			if(tt.x==tp.x&&tp.y==tt.y){
+    				count++;
+    				continue;
+    			}else{
+    				Double in = infinity(tp, tt);
+    				if(map.isEmpty()){
+    					map.put(in, 1);
+    					if(tmax<1)
+    						tmax=1;
+    				}else{
+    					if(map.containsKey(in)){
+    						int tte = map.get(in)+1;
+    						if(tte>max)
+    							tmax=tte;
+    					}else{
+    						map.put(in, 1);
+    					}
+    				}
+    			}
+    			
+    		}
+    		if((tmax+count)>max)
+				max=tmax+count;
+    			
+    	}
+		return max;
         
     }
-
-	private boolean ContainPoint(Map<Point, Double> in, Point point) {
+    
+    private boolean contain(Map<Double, Integer> map, double temp) {
 		// TODO Auto-generated method stub
-		Set<Point> set = in.keySet();
-		Iterator<Point> it = set.iterator();
-		while(it.hasNext()){
-			Point temp = it.next();
-			if(temp.x==point.x&&temp.y==point.y){
-				return true;
-			}
-		}
-		return false;
-	}
-
-	private boolean Contain(Map<Double, Integer> count, double temp) {
-		// TODO Auto-generated method stub
-		Set<Double> set = count.keySet();
+    	Set<Double> set = map.keySet();
 		Iterator<Double> it = set.iterator();
 		while(it.hasNext()){
-			if((it.next()-temp)==0){
+			double t = it.next();
+			double tt = t-temp;
+			if(Math.abs(tt)<0.0000001){
 				return true;
 			}
 		}
 		return false;
 	}
+    public void ss(Point[] points){
+    	for(int i=0;i<points.length;i++){
+    		for(int j=0;j<points.length;j++){
+    			System.out.print(infinity(points[i],points[j])+"   ");
+    		}
+    		System.out.println();
+    	}
+    }
+	private double infinity(Point high,Point low) {
+		if(high.y==low.y)
+			return (double)0;
+		return high.x == low.x ? Double.MAX_VALUE : (high.y - low.y)*1.0/(high.x - low.x); 
 
-	private Double infinity(Point point) {
-		// TODO Auto-generated method stub
-		if(point.x==0){
-			return (double) 1024;
-		}else{
-			double x = point.x;
-			double y = point.y;
-			
-			return y/x;
-		}
 		
 	}
 }
