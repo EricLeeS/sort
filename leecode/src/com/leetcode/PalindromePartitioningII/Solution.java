@@ -47,9 +47,14 @@ public class Solution {
 	    					bol[temp][i]=true;
 	    					break;
 	    				}
-	    				else if(bol[temp+1][i-1]&&temp!=0&&dp[i-1]>dp[temp-1]&&dp[temp-1]+1<min&&isPalindrome(s, temp, i)){
-	    					bol[temp][i]=true;
-	    					min=dp[temp-1]+1;
+	    				else{
+	    					 if(bol[temp+1][i-1]){
+	    						 bol[temp][i]=true;
+	    						 if(temp!=0&&dp[i-1]>dp[temp-1]&&dp[temp-1]+1<min){	    							
+	 	 	    					min=dp[temp-1]+1;
+	    						 }
+	 	    					
+	 	    				}
 	    				}
 	    				
 	    			}

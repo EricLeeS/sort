@@ -12,7 +12,7 @@ public class Main {
 //				
 //		}
 		
-		NNSolution so = new NNSolution();
+		Solution so = new Solution();
 		System.out.println(so.minCut(str));
 	}
 }
