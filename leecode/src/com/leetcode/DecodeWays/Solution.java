@@ -1,4 +1,4 @@
-package com.leetcode.BinaryTreeMaxmumPathSum;
+package com.leetcode.DecodeWays;
 
 public class Solution {
     public int numDecodings(String s) {

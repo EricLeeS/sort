@@ -1,4 +1,4 @@
-package com.leetcode.BinaryTreeMaxmumPathSum;
+package com.leetcode.DecodeWays;
 
 public class Main {
 	public static void main(String[] args){

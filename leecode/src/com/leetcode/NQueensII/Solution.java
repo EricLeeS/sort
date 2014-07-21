@@ -1,14 +1,11 @@
-package com.leetcode.NQueens;
+package com.leetcode.NQueensII;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class Solution {
-    public List<String[]> solveNQueens(int n) {
-    	
+    public int totalNQueens(int n) {
     	if(n==0)
-    		return re;
+    		return 0;
     	int[] queen = new int[n];
     	Arrays.fill(queen, 0);
     	
@@ -16,21 +13,11 @@ public class Solution {
 		return re;
         
     }
-    public List<String[]> re = new ArrayList<String[]>();
-	private void generate(int count,int n, int[] queen) {
-		if(count==n){
-			String[] res = new String[n];			
-			for(int i=0;i<n;i++){
-				String str = "";
-				for(int j=0;j<n;j++){
-					if(j==queen[i])
-						str+="Q";
-					else
-						str+=".";
-				}
-				res[i]=str;
-			}
-			re.add(res);
+    public int re = 0;
+    private void generate(int count, int n, int[] queen) {
+		// TODO Auto-generated method stub
+    	if(count==n){
+			re++;
 			return;
 		}
 		for(int i=0;i<n;i++){
@@ -44,11 +31,11 @@ public class Solution {
 		return;				
 	}
 	private boolean isValid(int[] queen, int n, int value) {
-		// TODO Auto-generated method stub
 		for(int i=0;i<n;i++){
 			if(queen[i]==value||queen[i]-value==n-i||queen[i]-value==i-n)
 				return false;
 		}
 		return true;
 	}
+	
 }

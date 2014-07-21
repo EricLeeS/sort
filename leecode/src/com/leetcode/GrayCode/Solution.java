@@ -3,39 +3,40 @@ package com.leetcode.GrayCode;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+/**
+ * http://www.cnblogs.com/lihaozy/archive/2012/12/31/2840437.html
+ * @author Administrator
+ *Gray Code， 每次看每次都不记得。写下来让自己好温习。
 
+Gray Code 0 = 0, 下一项是toggle最右边的bit(LSB), 再下一项是toggle最右边值为 “1” bit的左边一个bit。然后重复
+
+如： 3bit
+
+Gray Code:  000, 001, 011, 010, 110, 111, 101, 100, 最右边值为 “1” 的bit在最左边了，结束。
+
+Binary      :  000, 001, 010, 011, 100, 101, 110, 111
+
+ 
+
+再者就是Binary Code 转换为Gray Code了。
+
+如：
+
+　　Binary Code ：1011 要转换成Gray Code
+
+　　1011 = 1（照写第一位）, 1(第一位与第二位异或 1^0 = 1), 1(第二位异或第三位， 0^1=1), 0 (1^1 =0) = 1110
+
+　　其实就等于 (1011 >> 1) ^ 1011 = 1110
+ */
 public class Solution {
-    public ArrayList<Integer> grayCode(int n) {
-		ArrayList<Integer> re = new ArrayList<Integer>();
-		int num = (int) (Math.pow(2, n)-1);
-		int[] t = new int[n];
-		for(int j=0;j<n;j++){
-			t[j]=0;
+    public List<Integer> grayCode(int n) {
+		int size = 1 << n;		
+		List<Integer> ret = new ArrayList<Integer>();
+		
+		for(int i=0; i<size; i++){
+			
+			ret.add(i ^ (i>>1));
 		}
-		int temp = 0;
-		re.add(0);
-		for(int i=0;i<num+1;i++){
-			int[] tt = new int[n];
-			tt[0]=t[0];
-			for(int m=1;m<n;m++){
-				tt[m]=t[m-1]^t[m];
-			}
-			re.add(ToNum(tt));
-			for(int mm=0;mm<n;mm++){
-				t[mm]=tt[mm];
-			}
-		}
-		return re;
-    }
-
-	private Integer ToNum(int[] tt) {
-		// TODO Auto-generated method stub
-		int temp = 1;
-		int re = 0;
-		for(int i=tt.length-1;i>=0;i--){
-			re+=(tt[i]*temp);
-			temp*=2;
-		}
-		return re;
+		return ret;
 	}
 }
